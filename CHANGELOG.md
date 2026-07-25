@@ -4,6 +4,7 @@
 
 * Published under OpenShellOrg (`openshellorg/prohelp-cli`); depends on sibling `openshellorg/prohelp`.
 * Scaffold previously lived locally under Dev-Centr without a remote.
+* CI: build library against `openshellorg/prohelp`; tag releases publish GitHub Release notes.
 
 ## Unreleased (historical)
 
