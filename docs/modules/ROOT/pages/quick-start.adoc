@@ -1,0 +1,22 @@
+= Quick Start (D + arsd.cli)
+:description: Minimal Prohelp + arsd.cli main.
+
+[source,d]
+----
+import arsd.cli;
+import prohelp.intercept;
+
+class App {
+    void create(string[] files) { /* ... */ }
+}
+
+int main(string[] args) {
+    if (prohelp.intercept(args)) return 0;
+    return runCli!App(args);
+}
+----
+
+Help triggers (`?`, `help`, `-h`, …) are handled by Prohelp.
+Execution (`mytool create --file x`) is handled by arsd.cli.
+
+See xref:explanation:arsd-cli-bridge.adoc[How Prohelp fits arsd.cli] for the full model, folder conventions, and roadmap.

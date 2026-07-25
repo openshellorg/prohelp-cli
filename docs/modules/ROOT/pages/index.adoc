@@ -1,0 +1,12 @@
+= Prohelp CLI Bridges
+:description: Wire Prohelp into D CLI frameworks such as arsd.cli.
+
+*prohelp-cli* connects xref:prohelp::index.adoc[Prohelp] (progressive *help*) to command-line *application* frameworks (parsing, routing, subcommands).
+
+There is no widely agreed term for "library that builds CLI tools" versus "program that *is* a CLI."
+In OpenShellOrg naming:
+
+* *prohelp* — help engine, specification, preview tool, global `help` binary, C-oriented library core
+* *prohelp-cli* — bridges that wire Prohelp into D CLI routers (and future adapters)
+
+If you are starting a new D command-line tool, *use a CLI framework here plus Prohelp* — not the raw `prohelp.intercept` call alone unless you have a good reason.

@@ -1,0 +1,27 @@
+= When to Use What
+:description: Decision table for prohelp vs prohelp-cli vs help binary.
+
+[cols="1,2,2"]
+|===
+| Goal | Use | Not
+
+| Progressive help only, C/BetterC, existing argv parser
+| xref:prohelp::index.adoc[prohelp] library (C mode planned)
+| prohelp-cli
+
+| New D CLI with subcommands and flags
+| *prohelp-cli* + https://opendlang.org/library/arsd.cli.html[arsd.cli] (or similar) + prohelp
+| Raw intercept only
+
+| Author/preview help.sdl before shipping
+| `prohelp` executable from prohelp repo
+| —
+
+| Global `help <command>` on PATH
+| `help` binary from prohelp (`dub build -c help`)
+| —
+
+| Python/Rust/Go CLI
+| Prohelp via FFI + your framework (Click, clap, cobra, …)
+| prohelp-cli (D-only bridges)
+|===

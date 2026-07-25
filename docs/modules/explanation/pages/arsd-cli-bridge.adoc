@@ -1,5 +1,4 @@
 = How Prohelp fits arsd.cli
-:page-layout: docs-explanation
 
 This document lives in **prohelp-cli** because it describes *integration*, not the help engine itself. Prohelp remains a standalone specification and library; this bridge explains how to pair it with link:https://opendlang.org/library/arsd.cli.html[arsd.cli] on OpenD.
 

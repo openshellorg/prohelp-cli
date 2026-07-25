@@ -1,0 +1,6 @@
+name: prohelp-cli
+title: Prohelp CLI
+version: ~
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/nav.adoc
