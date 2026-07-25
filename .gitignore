@@ -1,0 +1,11 @@
+﻿*
+!.gitignore
+!README.adoc
+!CHANGELOG.md
+!dub.json
+!source/
+!source/**
+!docs/
+!docs/**
+!examples/
+!examples/**

@@ -1,0 +1,103 @@
+= How Prohelp fits arsd.cli
+:page-layout: docs-explanation
+
+This document lives in **prohelp-cli** because it describes *integration*, not the help engine itself. Prohelp remains a standalone specification and library; this bridge explains how to pair it with link:https://opendlang.org/library/arsd.cli.html[arsd.cli] on OpenD.
+
+== Two layers, one binary
+
+[cols="1,2,2"]
+|===
+| Layer | Responsibility | Example
+
+| **CLI framework** (arsd.cli) | Parse argv, bind flags, route subcommands, call handlers, exit codes | `mytool create --file archive.tar`
+| **Prohelp** | Progressive *documentation*: tree navigation, line budgets, locales, TUI, wildcards | `mytool ? create` or `mytool ?:de,i`
+|===
+
+They are complementary. arsd.cli is introspection-oriented execution routing:
+
+[source,d]
+----
+class Thing {
+    void func(int a, string[] args) { /* ... */ }
+    int other(bool flag) { return flag ? 1 : 0; }
+}
+
+int main(string[] args) {
+    return runCli!Thing(args);
+}
+----
+
+Public methods become subcommands (`func`, `other`). Flags map to parameters. `--help` is generic.
+
+Prohelp is documentation-oriented:
+
+* Authored help tree (future: `help/<version>/…` folders + per-level `help.sdl`)
+* Strict screen budgets (20 / 40 / 60 lines)
+* Dominance-ranked options, locales, optional full-screen browser
+* Not a substitute for `--flag` parsing
+
+**Recommended stack:**
+
+[source,d]
+----
+import arsd.cli;
+import prohelp.intercept;
+
+int main(string[] args) {
+    if (prohelp.intercept(args)) return 0;
+    return runCli!YourApp(args);
+}
+----
+
+== Parallel namespaces (align, do not merge)
+
+Keep **execution names** and **help folder names** aligned when it helps mental models:
+
+[source,text]
+----
+source/app.d          → runCli!TarApp
+help/1.0.0/
+  help.sdl            → command overview (syntax lives here, not a "usage/" folder)
+  create/help.sdl     → mirrors TarApp.create
+  extract/help.sdl
+----
+
+* `mytool create …` → arsd.cli dispatches to `create`
+* `mytool ? create` → Prohelp loads `create/help.sdl`
+
+Prohelp does **not** need to list child sections in SDL when using the folder tree model — **subdirectory names are the next navigation tokens**.
+
+Uncategorized topics belong under `misc/`, not loose `.sdl` files beside `help.sdl`.
+
+== What arsd.cli will not give you
+
+Auto-generated `--help` from method signatures cannot replace Prohelp's:
+
+* Progressive disclosure and line budgets
+* Unicode box panels and TUI mode
+* Locale blocks and `?:de,i` hybrid suffix syntax
+* `*` subtree dumps for scripts and agents
+
+Conversely, Prohelp will not parse `--create` or populate `@Cli` fields — that stays in arsd.cli.
+
+== Future bridge work (prohelp-cli)
+
+Planned helpers in this repository (not in prohelp core):
+
+* `runCliWithProhelp!App(args)` — standard entry wrapper
+* Optional UDA scan → scaffold `help/<version>/…` from public methods (human-edited afterward)
+* Convention docs for OpenD + link:https://github.com/adamdruppe/arsd[arsd] / `arsd.cli` versioning
+
+== Other languages
+
+prohelp-cli is **D-first**. For C/BetterC, use prohelp's C-compatible API (planned) with your hand-rolled or third-party parser. For Rust, Go, Python, etc., use Prohelp through FFI and the ecosystem's CLI framework — the same two-layer pattern applies.
+
+== Terminology (dev-centr)
+
+| Term | Meaning |
+|------|---------|
+| **prohelp** | Progressive help specification + engine + preview CLI |
+| **prohelp-cli** | Bridges for building CLI *applications* that use Prohelp |
+| **arsd.cli** | OpenD CLI router; execution, not documentation UX |
+
+We avoid calling either package a “shell.” Prohelp is not a REPL; arsd.cli is not a terminal emulator. Both help you **build** command-line tools.

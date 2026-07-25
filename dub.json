@@ -1,0 +1,19 @@
+{
+    "name": "prohelp-cli",
+    "description": "CLI framework bridges for Prohelp — D integration with arsd.cli and related routers",
+    "authors": ["OpenShellOrg", "dev-centr"],
+    "license": "GPL-3.0",
+    "homepage": "https://github.com/openshellorg/prohelp-cli",
+    "targetType": "library",
+    "dependencies": {
+        "prohelp": {
+            "path": "../prohelp"
+        }
+    },
+    "configurations": [
+        {
+            "name": "library",
+            "targetType": "library"
+        }
+    ]
+}

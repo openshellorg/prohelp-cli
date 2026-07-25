@@ -1,0 +1,5 @@
+= Examples
+
+Example integrations will live here as the bridge API stabilizes.
+
+Start with link:../docs/explanation/arsd-cli-bridge.adoc[How Prohelp fits arsd.cli].
