@@ -13,7 +13,16 @@
     "configurations": [
         {
             "name": "library",
-            "targetType": "library"
+            "targetType": "library",
+            "excludedSourceFiles": ["source/demo/*"]
+        },
+        {
+            "name": "demo",
+            "targetType": "executable",
+            "targetName": "prohelp-cli-demo",
+            "mainSourceFile": "source/demo/app.d",
+            "stringImportPaths": ["examples"],
+            "versions": ["ProhelpCliDemo"]
         }
     ]
 }

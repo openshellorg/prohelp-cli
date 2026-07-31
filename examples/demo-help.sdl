@@ -1,0 +1,16 @@
+command "prohelp-cli-demo" {
+    summary "Demo of prohelp-cli linking progressive help into a host CLI"
+    description "Sample binary from openshellorg/prohelp-cli. Proves the bridge library builds and intercepts help triggers. Real apps use prohelp-cli as a DUB dependency, not this demo."
+
+    section "usage" {
+        summary "How to run the demo"
+        content "prohelp-cli-demo ?   |   prohelp-cli-demo ?:i"
+        example "Progressive help" "prohelp-cli-demo ?"
+        example "Interactive TUI" "prohelp-cli-demo ?:i"
+    }
+
+    section "integration" {
+        summary "Use the library in your app"
+        content "Add prohelp-cli (and prohelp) as dependencies, call intercept before your CLI router."
+    }
+}

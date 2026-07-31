@@ -5,9 +5,13 @@
 !dub.json
 !source/
 !source/**
+!source/demo/
+!source/demo/**
 !docs/
 !docs/**
 !examples/
 !examples/**
 !.github/
 !.github/**
+!.github/workflows/
+!.github/workflows/**

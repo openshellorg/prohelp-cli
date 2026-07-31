@@ -1,0 +1,131 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release (e.g. v0.1.1); empty uses the pushed tag'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            suffix: linux
+          - os: windows-latest
+            suffix: windows
+          - os: macos-latest
+            suffix: macos
+
+    steps:
+      - name: Checkout prohelp-cli
+        uses: actions/checkout@v4
+        with:
+          path: prohelp-cli
+
+      - name: Checkout prohelp (path dependency)
+        uses: actions/checkout@v4
+        with:
+          repository: openshellorg/prohelp
+          path: prohelp
+
+      - name: Setup D compiler
+        uses: dlang-community/setup-dlang@v1
+        with:
+          compiler: ldc-latest
+
+      - name: Build library + demo
+        working-directory: prohelp-cli
+        run: |
+          dub build -c library
+          dub build -c demo --build=release
+
+      - name: Package
+        working-directory: prohelp-cli
+        shell: bash
+        run: |
+          mkdir -p dist
+          if [ -f prohelp-cli-demo.exe ]; then
+            cp prohelp-cli-demo.exe dist/prohelp-cli-demo-windows.exe
+          else
+            cp prohelp-cli-demo "dist/prohelp-cli-demo-${{ matrix.suffix }}"
+          fi
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-${{ matrix.suffix }}
+          path: prohelp-cli/dist/*
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve version
+        id: ver
+        run: |
+          if [ -n "${{ github.event.inputs.tag }}" ]; then
+            TAG="${{ github.event.inputs.tag }}"
+          else
+            TAG="${GITHUB_REF_NAME}"
+          fi
+          VERSION="${TAG#v}"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+
+      - name: Checksums
+        run: |
+          cd release-assets
+          sha256sum * > SHA256SUMS
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.ver.outputs.tag }}
+          name: prohelp-cli ${{ steps.ver.outputs.version }}
+          generate_release_notes: true
+          files: release-assets/*
+          body: |
+            ## prohelp-cli ${{ steps.ver.outputs.version }}
+
+            D CLI-framework **library** for wiring [prohelp](https://github.com/openshellorg/prohelp) into app routers (e.g. arsd.cli).
+
+            ### What to use in production
+
+            Add `prohelp-cli` as a DUB dependency in *your* CLI. The product binaries users run are still:
+
+            - `prohelp` / `help` from [openshellorg/prohelp](https://github.com/openshellorg/prohelp)
+            - your own app binary that calls `intercept`
+
+            ### Demo binary (CI smoke)
+
+            | Platform | Asset |
+            |---|---|
+            | Linux | `prohelp-cli-demo-linux` |
+            | Windows | `prohelp-cli-demo-windows.exe` |
+            | macOS | `prohelp-cli-demo-macos` |
+
+            Run `prohelp-cli-demo ?` to exercise progressive help through the bridge.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
