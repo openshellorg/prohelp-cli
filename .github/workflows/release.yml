@@ -39,6 +39,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: openshellorg/prohelp
+          ref: v0.2.3
           path: prohelp
 
       - name: Setup D compiler

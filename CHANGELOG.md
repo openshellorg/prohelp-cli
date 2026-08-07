@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 (2026-08-07)
+
+* CI/Release pin `openshellorg/prohelp` to `v0.2.3` (UTF-8 console + consistent dim frames).
+
 ## 2026-07-31
 
 * Multi-OS CI (library + `prohelp-cli-demo`).
