@@ -3,7 +3,27 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-[[readme-top]]
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/openshellorg/prohelp-cli/graphs/contributors"><img src="https://img.shields.io/github/contributors/openshellorg/prohelp-cli.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/openshellorg/prohelp-cli/network/members"><img src="https://img.shields.io/github/forks/openshellorg/prohelp-cli.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/openshellorg/prohelp-cli/stargazers"><img src="https://img.shields.io/github/stars/openshellorg/prohelp-cli.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/openshellorg/prohelp-cli/issues"><img src="https://img.shields.io/github/issues/openshellorg/prohelp-cli.svg?style=for-the-badge" alt="Issues"></a>
+<br />
+<h3 align="center">Prohelp CLI bridges</h3>
+<p align="center">
+CLI framework bridges for Prohelp (arsd.cli and related routers).<br />
+<a href="https://github.com/openshellorg/prohelp-cli/issues">Report Bug</a>
+&middot;
+<a href="https://github.com/openshellorg/prohelp-cli/issues">Request Feature</a>
+</p>
+</div>
+++++
+endif::[]
+
+ifndef::env-github[]
 image:https://img.shields.io/github/contributors/openshellorg/prohelp-cli.svg?style=for-the-badge[Contributors,link=https://github.com/openshellorg/prohelp-cli/graphs/contributors]
 image:https://img.shields.io/github/forks/openshellorg/prohelp-cli.svg?style=for-the-badge[Forks,link=https://github.com/openshellorg/prohelp-cli/network/members]
 image:https://img.shields.io/github/stars/openshellorg/prohelp-cli.svg?style=for-the-badge[Stars,link=https://github.com/openshellorg/prohelp-cli/stargazers]
@@ -15,6 +35,7 @@ CLI framework bridges for Prohelp (arsd.cli and related routers).
 
 link:https://github.com/openshellorg/prohelp-cli/issues[Report Bug] ·
 link:https://github.com/openshellorg/prohelp-cli/issues[Request Feature]
+endif::[]
 
 == About The Project
 
@@ -25,8 +46,9 @@ link:https://github.com/openshellorg/prohelp-cli/issues[Request Feature]
 
 This package is a **library**. Your app is the binary. CI builds a small **`prohelp-cli-demo`** executable for regression testing.
 
-link:#readme-top[back to top]
-
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 == Installation
 
 [source,shell]
@@ -34,8 +56,9 @@ link:#readme-top[back to top]
 dub build -c demo
 ----
 
-link:#readme-top[back to top]
-
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 == Usage
 
 === Quick start (D + arsd.cli)
@@ -72,8 +95,9 @@ dub build -c demo
 | Global `help <command>` on PATH | `help` binary from prohelp | —
 | Python/Rust/Go CLI | Prohelp via FFI + your framework | prohelp-cli (D-only bridges)
 
-link:#readme-top[back to top]
-
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 == Dependencies
 
 * link:https://github.com/openshellorg/prohelp[prohelp] — progressive help library
@@ -88,4 +112,6 @@ Open Shell Org — openshell@devcentr.org
 * Project: https://github.com/openshellorg/prohelp-cli
 * Site: https://openshellorg.github.io
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
