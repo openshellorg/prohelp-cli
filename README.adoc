@@ -3,19 +3,11 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
 image:https://img.shields.io/github/contributors/openshellorg/prohelp-cli.svg?style=for-the-badge[Contributors,link=https://github.com/openshellorg/prohelp-cli/graphs/contributors]
 image:https://img.shields.io/github/forks/openshellorg/prohelp-cli.svg?style=for-the-badge[Forks,link=https://github.com/openshellorg/prohelp-cli/network/members]
 image:https://img.shields.io/github/stars/openshellorg/prohelp-cli.svg?style=for-the-badge[Stars,link=https://github.com/openshellorg/prohelp-cli/stargazers]
 image:https://img.shields.io/github/issues/openshellorg/prohelp-cli.svg?style=for-the-badge[Issues,link=https://github.com/openshellorg/prohelp-cli/issues]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/openshellorg/prohelp-cli.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/openshellorg/prohelp-cli.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/openshellorg/prohelp-cli.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/openshellorg/prohelp-cli.svg?style=for-the-badge[Issues]
-endif::[]
 
 = Prohelp CLI bridges
 
@@ -33,12 +25,16 @@ link:https://github.com/openshellorg/prohelp-cli/issues[Request Feature]
 
 This package is a **library**. Your app is the binary. CI builds a small **`prohelp-cli-demo`** executable for regression testing.
 
+link:#readme-top[back to top]
+
 == Installation
 
 [source,shell]
 ----
 dub build -c demo
 ----
+
+link:#readme-top[back to top]
 
 == Usage
 
@@ -76,6 +72,8 @@ dub build -c demo
 | Global `help <command>` on PATH | `help` binary from prohelp | —
 | Python/Rust/Go CLI | Prohelp via FFI + your framework | prohelp-cli (D-only bridges)
 
+link:#readme-top[back to top]
+
 == Dependencies
 
 * link:https://github.com/openshellorg/prohelp[prohelp] — progressive help library
@@ -89,3 +87,5 @@ Open Shell Org — openshell@devcentr.org
 
 * Project: https://github.com/openshellorg/prohelp-cli
 * Site: https://openshellorg.github.io
+
+link:#readme-top[back to top]
