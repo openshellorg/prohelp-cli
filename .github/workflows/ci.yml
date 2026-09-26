@@ -28,6 +28,12 @@ jobs:
           ref: v0.2.3
           path: prohelp
 
+      - name: Checkout config-key-sanitation (path dependency)
+        uses: actions/checkout@v4
+        with:
+          repository: openshellorg/config-key-sanitation
+          path: config-key-sanitation
+
       - name: Setup D compiler
         uses: dlang-community/setup-dlang@v1
         with:
@@ -47,3 +53,4 @@ jobs:
         run: |
           if [ -f prohelp-cli-demo.exe ]; then BIN=./prohelp-cli-demo.exe; else BIN=./prohelp-cli-demo; fi
           "$BIN" --help || "$BIN" ?
+          "$BIN" sanitize-config || true

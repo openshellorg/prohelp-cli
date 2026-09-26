@@ -46,6 +46,16 @@ endif::[]
 
 This package is a **library**. Your app is the binary. CI builds a small **`prohelp-cli-demo`** executable for regression testing.
 
+=== Config Key Sanitation
+
+CLI authors who load user/project config should scan keys with
+link:https://github.com/openshellorg/config-key-sanitation[`config-key-sanitation`]
+(re-exported as `prohelp_cli.config_keys`).
+Never drop detection of expired keys — see the
+link:https://docs.opensh.org/open-shell-org/standard-config-key-sanitation.html[SOS protocol].
+
+Demo smoke: `prohelp-cli-demo sanitize-config` (requires sibling checkout of `config-key-sanitation`).
+
 ++++
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 ++++

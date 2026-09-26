@@ -8,6 +8,9 @@
     "dependencies": {
         "prohelp": {
             "path": "../prohelp"
+        },
+        "config-key-sanitation": {
+            "path": "../config-key-sanitation"
         }
     },
     "configurations": [
