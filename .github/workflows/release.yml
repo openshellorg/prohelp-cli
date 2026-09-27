@@ -42,11 +42,11 @@ jobs:
           ref: v0.2.3
           path: prohelp
 
-      - name: Checkout config-key-sanitation (path dependency)
+      - name: Checkout config-lifecycle (path dependency)
         uses: actions/checkout@v4
         with:
-          repository: openshellorg/config-key-sanitation
-          path: config-key-sanitation
+          repository: openshellorg/config-lifecycle
+          path: config-lifecycle
 
       - name: Setup D compiler
         uses: dlang-community/setup-dlang@v1

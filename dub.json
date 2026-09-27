@@ -9,8 +9,8 @@
         "prohelp": {
             "path": "../prohelp"
         },
-        "config-key-sanitation": {
-            "path": "../config-key-sanitation"
+        "config-lifecycle": {
+            "path": "../config-lifecycle"
         }
     },
     "configurations": [

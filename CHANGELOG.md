@@ -2,8 +2,8 @@
 
 ## Unreleased
 
-* Bridge Config Key Sanitation via `prohelp_cli.config_keys` (path dep on sibling `config-key-sanitation`).
-* Demo: `prohelp-cli-demo sanitize-config` scans the sibling fixture catalog.
+* Bridge Config Lifecycle Management via `prohelp_cli.config_keys` (path dep on sibling `config-lifecycle`, formerly `config-key-sanitation`).
+* Demo: `prohelp-cli-demo check-config` scans the sibling fixture catalog.
 
 ## 0.1.2 (2026-08-07)
 

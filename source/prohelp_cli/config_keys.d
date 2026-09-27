@@ -1,13 +1,13 @@
 module prohelp_cli.config_keys;
 
 /**
- * Config Key Sanitation bridge for CLI apps using prohelp-cli.
+ * Config Lifecycle Management bridge for CLI apps using prohelp-cli.
  *
- * Re-exports openshellorg/config-key-sanitation and provides a small helper
+ * Re-exports openshellorg/config-lifecycle and provides a small helper
  * to scan key=value config text and print protocol alerts to stderr.
  */
 
-public import config_key_sanitation;
+public import config_lifecycle;
 
 import std.stdio : stderr;
 
