@@ -31,25 +31,25 @@ jobs:
 
     steps:
       - name: Checkout prohelp-cli
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: prohelp-cli
 
       - name: Checkout prohelp (path dependency)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: openshellorg/prohelp
           ref: v0.2.3
           path: prohelp
 
       - name: Checkout config-lifecycle (path dependency)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: openshellorg/config-lifecycle
           path: config-lifecycle
 
       - name: Setup D compiler
-        uses: dlang-community/setup-dlang@v1
+        uses: dlang-community/setup-dlang@v2
         with:
           compiler: ldc-latest
 
@@ -71,7 +71,7 @@ jobs:
           fi
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: demo-${{ matrix.suffix }}
           path: prohelp-cli/dist/*
@@ -81,7 +81,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Resolve version
         id: ver
@@ -96,7 +96,7 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: release-assets
           merge-multiple: true
@@ -107,7 +107,7 @@ jobs:
           sha256sum * > SHA256SUMS
 
       - name: Create release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.ver.outputs.tag }}
           name: prohelp-cli ${{ steps.ver.outputs.version }}

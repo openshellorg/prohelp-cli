@@ -17,25 +17,25 @@ jobs:
 
     steps:
       - name: Checkout prohelp-cli
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: prohelp-cli
 
       - name: Checkout prohelp (path dependency)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: openshellorg/prohelp
           ref: v0.2.3
           path: prohelp
 
       - name: Checkout config-lifecycle (path dependency)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: openshellorg/config-lifecycle
           path: config-lifecycle
 
       - name: Setup D compiler
-        uses: dlang-community/setup-dlang@v1
+        uses: dlang-community/setup-dlang@v2
         with:
           compiler: ldc-latest
 
